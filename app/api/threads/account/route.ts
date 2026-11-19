@@ -1,0 +1,2 @@
+import {NextResponse} from "next/server";import {getThreadsAccount} from "@/lib/threads-store";
+export async function GET(){try{const a=await getThreadsAccount();return NextResponse.json({connected:!!a,account:a?{username:a.username,threads_user_id:a.threads_user_id,token_expires_at:a.token_expires_at}:null})}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"조회 실패"},{status:500})}}
